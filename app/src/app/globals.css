@@ -1,0 +1,61 @@
+@config "../../tailwind.config.ts";
+@import "tailwindcss";
+
+/* RoadHome Design System base tokens */
+:root {
+  /* Warm off-white background and neutral text */
+  --background: #FBF6EE; /* RoadHome warm off-white */
+  --foreground: #0F172A; /* neutral-900 */
+
+  /* These are set by next/font in layout.tsx */
+  --font-display: ""; /* Nunito */
+  --font-body: ""; /* Inter */
+}
+
+/* Tailwind v4 theme tokens for utilities like bg-brand-teal, from-brand-blue, rounded-xl=20px, etc. */
+@theme {
+  /* Colors */
+  --color-brand-teal: #2F6F6A;
+  --color-brand-blue: #51B7C7;
+  --color-brand-coral: #F08E7D;
+  --color-neutral-bg: #FBF6EE;
+  --color-neutral-text: #0F172A;
+
+  /* Radii (ensure rounded-xl = 20px, 2xl = 28px) */
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+}
+
+/* Tailwind v4 @theme mapping removed to avoid IDE unknown-at-rule warnings. */
+
+/* Light/Dark optional theme hook (kept simple; design is light-first) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #121212;
+    --foreground: #EDEDED;
+  }
+}
+
+/* Base element defaults */
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-feature-settings: "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+/* 8pt rhythm helpers (Tailwind already uses 4px scale; prefer even steps) */
+.safe-pad { padding: 0.5rem; } /* 8px */
+.safe-gap { gap: 0.5rem; }     /* 8px */
+
+/* Headings use display font by default (Nunito) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
