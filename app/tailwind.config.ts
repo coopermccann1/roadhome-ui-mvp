@@ -10,6 +10,15 @@ const config = {
         "neutral-bg": "#FBF6EE", // warm off-white background
         "neutral-text": "#0F172A", // neutral-900 depth
       },
+      keyframes: {
+        glow: {
+          "0%, 100%": { transform: "scale(1)", opacity: "0.6" },
+          "50%": { transform: "scale(1.08)", opacity: "0.85" },
+        },
+      },
+      animation: {
+        glow: "glow 3s ease-in-out infinite",
+      },
       borderRadius: {
         xl: "20px",
         "2xl": "28px",

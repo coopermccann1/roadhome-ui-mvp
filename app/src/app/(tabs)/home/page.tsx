@@ -1,79 +1,59 @@
 "use client";
 
 import * as React from "react";
-import { Button, Card, Chip, Dialog, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, Progress, Toggle } from "@/components/ui";
+import { Progress } from "@/components/ui";
 
 export default function HomePage() {
-  const [open, setOpen] = React.useState(false);
-  const [goal] = React.useState(65);
-  const [muted, setMuted] = React.useState(false);
-
   return (
     <div className="font-sans">
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <Card className="lg:col-span-2 bg-gradient-to-b from-brand-blue/40 to-brand-teal/25 p-6 shadow-soft-lg">
-          <div className="flex items-center justify-between">
-            <Chip variant="teal">You're on track!</Chip>
-            <Toggle checked={!muted} onCheckedChange={(v)=>setMuted(!v)} aria-label="Mute toggle" />
-          </div>
-          <div className="mt-8 flex items-end justify-between">
-            <div>
-              <h1 className="font-display text-3xl text-neutral-text tracking-tight">Road Home</h1>
-              <p className="mt-1 text-neutral-text/80">$8,500 · YTD +12.3%</p>
-            </div>
-            <Button variant="secondary" onClick={()=>setOpen(true)}>Open Dialog</Button>
-          </div>
-          <div className="mt-6">
-            <Progress value={goal} label="Progress" />
-          </div>
-        </Card>
+      <section className="relative mx-auto max-w-md overflow-hidden rounded-2xl p-6 pt-8 pb-8 text-white shadow-soft-lg bg-gradient-to-b from-brand-teal to-brand-blue/70">
+        {/* Status pill */}
+        <div className="flex justify-center">
+          <span className="inline-flex items-center rounded-full bg-brand-teal px-5 h-10 text-sm font-semibold shadow-soft">
+            $10 more per week to be on track!
+          </span>
+        </div>
 
-        <Card className="lg:col-span-2">
-          <h2 className="font-display text-xl mb-4">Subscriptions</h2>
-          <div className="grid grid-cols-3 gap-4">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="rounded-xl border border-brand-blue/40 p-4 text-center shadow-soft bg-white">
-                <div className="h-10 w-10 mx-auto rounded-xl bg-brand-blue/30" />
-                <div className="mt-2 font-semibold">Item {i + 1}</div>
-              </div>
-            ))}
-          </div>
-        </Card>
+        {/* Glowing house icon */}
+        <div className="relative mt-10 grid place-items-center py-6">
+          {/* Radial glow behind the icon */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute h-[260px] w-[260px] rounded-full blur-2xl motion-reduce:opacity-70 motion-safe:animate-glow"
+            style={{
+              background:
+                "radial-gradient(closest-side, rgba(81,183,199,0.45), rgba(81,183,199,0.10) 60%, rgba(81,183,199,0) 75%)",
+            }}
+          />
 
-        <Card className="lg:col-span-2">
-          <h2 className="font-display text-xl">Buttons</h2>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <Button>Teal (Primary)</Button>
-            <Button variant="blue">Blue</Button>
-            <Button variant="coral">Coral</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="outline">Outline</Button>
-            <Button variant="ghost">Ghost</Button>
-          </div>
-        </Card>
+          {/* House outline with brick steps */}
+          <svg
+            width="160"
+            height="160"
+            viewBox="0 0 200 200"
+            fill="none"
+            aria-hidden
+          >
+            <path
+              d="M40 96 L100 44 L160 96 V176 H40 V96 Z"
+              stroke="#FFFFFF"
+              strokeWidth="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* brick steps */}
+            <path d="M60 136 H140" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" />
+            <path d="M60 152 H140" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" />
+            <path d="M60 168 H140" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" />
+          </svg>
+        </div>
 
-        <Card className="lg:col-span-2">
-          <h2 className="font-display text-xl">Chips & Toggles</h2>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <Chip variant="teal">Teal</Chip>
-            <Chip variant="blue">Blue</Chip>
-            <Chip variant="coral">Coral</Chip>
-            <Chip variant="neutral">Neutral</Chip>
-            <Toggle />
-          </div>
-        </Card>
-      </div>
-
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogHeader>
-          <DialogTitle>Road Home</DialogTitle>
-          <DialogDescription>Soft, rounded, playful dialog.</DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <DialogClose onClick={() => setOpen(false)} />
-          <Button onClick={() => setOpen(false)} variant="primary">Confirm</Button>
-        </DialogFooter>
-      </Dialog>
+        {/* Progress */}
+        <div className="mt-6">
+          <Progress value={62} />
+          <div className="mt-2 text-center text-white/90 font-medium">Progress</div>
+        </div>
+      </section>
     </div>
   );
 }
